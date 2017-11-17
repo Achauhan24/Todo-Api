@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :update, :destroy]
+  #before_action :set_todo, only: [:show, :update, :destroy]
 
   # GET /todos
   # GET /todos.json
@@ -11,35 +11,50 @@ class TodosController < ApplicationController
   # GET /todos/1
   # GET /todos/1.json
   def show
+    @todo=Todo.find(params[:id])
+    render json: @todo
   end
 
-  # POST /todos
-  # POST /todos.json
   def create
-    @todo = Todo.new(todo_params)
-
+    @todo=Todo.new(todo_params)
+    @todos=Todo.all
     if @todo.save
-      render :show, status: :created, location: @todo
+      render status: 200,json:{
+                message: "succesfully created",
+        todo_list: @todo
+        }.to_json
     else
-      render json: @todo.errors, status: :unprocessable_entity
+      render json: @todo.errors
     end
+
   end
 
-  # PATCH/PUT /todos/1
-  # PATCH/PUT /todos/1.json
   def update
-    if @todo.update(todo_params)
-      render :show, status: :ok, location: @todo
+    @todo=Todo.find(params[:id])
+    if @todo.update_attributes(todo_params)
+      render status: 200,json:{
+        message:"succesfully updated",
+        todo_list:@todo
+      }.to_json
+
     else
-      render json: @todo.errors, status: :unprocessable_entity
+      render json: @todo.errors
+      
     end
   end
 
-  # DELETE /todos/1
-  # DELETE /todos/1.json
+
   def destroy
+    @todo=Todo.find(params[:id])
     @todo.destroy
+    @todos=Todo.all
+    render status: 200 ,json:{
+      message:"succesfully deleted",
+      todo_list: @todos
+    }
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
