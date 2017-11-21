@@ -22,7 +22,7 @@ class TodosController < ApplicationController
       render status: 200,json:{
                 message: "succesfully created",
         todo_list: @todo
-        }.to_json
+        }
     else
       render json: @todo.errors
     end

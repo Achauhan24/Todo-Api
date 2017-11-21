@@ -17,3 +17,6 @@ Todo.create!(title: "need to work on API",
 		completed: completed,
 		order: order)
 end
+
+User.create(name: 'bugs', email: 'bugs@rubyplus.com', password: 'qwertyu')
+User.create(name: 'daffy', email: 'daffy@rubyplus.com', password: 'qwertyuiop')

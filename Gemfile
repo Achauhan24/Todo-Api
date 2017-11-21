@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.5'
 # Use active model serializers
 gem 'active_model_serializers' ,'~> 0.10.6'
 gem 'faker'                    , '~> 1.7.3'
+gem 'bcrypt'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
